@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>组件之间通信,子组件发送给父组件数据练习</title>
+</head>
+<body>
+    <div id="app">
+        <parent></parent>
+    </div>
+<script src="../vue.min.js"></script>
+<script>
+    Vue.component("parent",{
+        data:function () {
+            return {
+                lists:["tom","daMing","Amy"],
+                isUserLogin:true
+            }
+        },
+        template:'' +
+            '<div>' +
+            '   <ul v-if="isUserLogin">' +
+            '       <li v-for="item in lists">{{item}}</li>' +
+            '   </ul>' +
+            '   <child @dataEvent="getDate"></child>' +
+            '</div>',
+        methods:{
+            getDate:function (msg) {
+                this.isUserLogin = msg;
+            }
+        }
+    });
+    Vue.component("child",{
+        methods:{
+            addPar:function () {
+                this.$emit("dataEvent",false);
+            }
+        },
+        template:'<button @click="addPar">子组件传送数据给父组件</button>'
+    });
+
+    new Vue({
+        el:"#app"
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>练习：分页条</title>
+</head>
+<body>
+    <div id="app">
+        <h3 v-change-background-color="myBgColor">你好</h3>
+    </div>
+    <script src="../vue.min.js"></script>
+    <script>
+        var vueData = {
+            myBgColor:"#ff0000"
+        }
+        new Vue({
+            el:"#app",
+            data:vueData,
+            directives:{
+                //建议使用小驼峰命名法
+                changeBackgroundColor:{
+                    bind:function (el,bindings) {
+                        //bindings：自定义指令对象
+                        //v-change-background-color="myBgColor"
+                        el.style.backgroundColor = bindings.value;
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="app">
+        <my-c></my-c>
+    </div>
+
+    <script src="../vue.min.js"></script>
+    <script>
+        Vue.component("my-c",{
+            template:'' +
+                '<div>' +
+                    '<span>{{username}}</span>' +
+                    '<ul><li v-for="item in lists" v-show="isYes">{{item}}</li></ul>' +
+                    '<input type="button" value="点击隐藏" @click="yinCang">' +
+                '</div>',
+            data:function () {
+                return{
+                    username:"tom",
+                    lists:["amy","lzm","daMIng"],
+                    isYes:true
+                }
+            },
+            methods:{
+                yinCang:function () {
+                    this.isYes = false;
+                }
+            }
+        })
+        new Vue({
+            el:"#app",
+        })
+
+    </script>
+</body>
+</html>

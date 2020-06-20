@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>计算器练习</title>
+</head>
+<body>
+    <div id="app">
+        <my-cal></my-cal>
+    </div>
+    <script src="../vue.min.js"></script>
+    <script>
+        Vue.component("my-cal",{
+            template:
+                '<div>' +
+                     '<input type="text" v-model="input1">' +
+                    '<select>' +
+                        '<option>+</option>' +
+                        '<option>-</option>' +
+                        '<option>*</option>' +
+                        '<option>/</option>' +
+                    '</select>'+
+                    '<input type="text" v-model="input2">' +
+                    '<br>' +
+                    '<p>{{result}}</p>' +
+                    '<button @click="jiSuan">计算结果</button>' +
+                '</div>',
+            data:function () {
+                return {
+                    input1:"",
+                    input2:"",
+                    result:""
+                }
+            },
+            watch:{
+
+            },
+            methods:{
+                jiSuan:function () {
+                    this.result = Number(this.input1) + Number(this.input2);
+                }
+            }
+        });
+
+        var vueDate = {
+
+        }
+        new Vue ({
+            el:"#app",
+            data:vueDate
+        })
+    </script>
+</body>
+</html>

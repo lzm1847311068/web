@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>组件之间通信练习</title>
+</head>
+<body>
+    <div id="app">
+        <xiong-da></xiong-da>
+        <xiong-er></xiong-er>
+    </div>
+<script src="../vue.min.js"></script>
+<script>
+    //1、创建公共Vue对象
+    var bus = new Vue();
+    //2、创建组件 xiong-er
+    Vue.component("xiong-er",{
+        template:'' +
+            '<div>' +
+                '<h4>熊二接收数据</h4>' +
+                '<button @click="setData">熊二给熊大发消息</button>' +
+            '</div>',
+        mounted:function () {
+            bus.$on("cutomeEvent",function (msg) {
+                console.log("熊大发来的消息"+msg);
+                console.log("guazai");
+            });
+        },
+        methods: {
+            setData:function () {
+                bus.$emit("cutomeEvent2","快跑");
+            }
+        }
+    });
+    //3、创建组件 xiong-da
+    Vue.component("xiong-da",{
+        template: '' +
+            '<div>' +
+                '<h4>熊大发数据</h4>' +
+                '<button @click="setData">发送</button>' +
+            '</div>',
+        methods:{
+            setData:function () {
+                bus.$emit("cutomeEvent","hello world")
+            }
+        },
+        mounted:function () {
+            bus.$on("cutomeEvent2",function (msg) {
+                console.log("熊二的消息"+msg)
+            });
+        }
+    });
+    //4、创建Vue
+    new Vue({
+        el:"#app"
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>猜数字游戏</title>
+</head>
+<body>
+    <div id="app">
+        <my-game></my-game>
+    </div>
+    <script src="../vue.min.js"></script>
+    <script>
+        Vue.component("my-game",{
+            mounted:function () {
+                //创建中奖数
+                var num = Math.floor(Math.random()*20);
+                this.randomNum = num;
+                console.log(this.randomNum)
+            },
+            template:
+                '<div>' +
+                    '<input type="text" v-model="userInput">' +
+                    '<p>{{result}}</p>' +
+                '</div>',
+            data:function () {
+                return {
+                    randomNum:"",  //中奖数
+                    userInput:"",  //用户输入数值
+                    result:""  //结果
+                }
+            },
+            watch:{
+                //监听属性
+                userInput:function () {
+                    console.log("监听执行了！")
+                    if(this.userInput > this.randomNum){
+                        this.result = "大了";
+                    }else if(this.userInput < this.randomNum){
+                        this.result = "小了";
+                    }else {
+                        this.result = "相同";
+                    }
+                }
+            }
+        });
+
+        var vueData = {
+
+        }
+        new Vue({
+            el:"#app",
+            data:vueData,
+        })
+    </script>
+</body>
+</html>

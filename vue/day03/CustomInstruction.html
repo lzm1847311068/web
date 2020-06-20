@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>自定义指令</title>
+</head>
+<body>
+    <div id="app">
+        {{count}}<br>
+        <button @click="addNum">clickMe</button>
+        <br>
+        <h3 v-if="count<6" v-hello="count">自定义指令</h3>
+    </div>
+    <script src="../vue.min.js"></script>
+    <script>
+        var vueData = {
+            msg:"hello vue",
+            count:0
+        }
+        new Vue({
+            el:"#app",
+            data:vueData,
+            directives:{
+                hello:{
+                    bind:function (el,bindings) {
+                        console.log("初始化指令")   //bindings：指令对象
+                    },
+                    update:function (el,bindings) {
+                        console.log("指令绑定的数值发生了变化")
+                        console.log(bindings.value) //指令绑定的变量（count）
+                    },
+                    unbind:function (el,bindings) {
+                        console.log("解除绑定")
+                    }
+                }
+            },
+            methods:{
+                addNum:function () {
+                    this.count ++ ;
+                }
+            }
+        })
+    </script>
+</body>
+</html>

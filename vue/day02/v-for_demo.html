@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h3>v-for指令</h3>
+    <div id="app">
+        <table border="2px" width="400px">
+            <thead>
+                <tr>
+                    <td>下标</td>
+                    <td>姓名</td>
+                    <td>年龄</td>
+                    <td>性别</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(user,key) in users">
+                    <td>{{key}}</td>
+                    <td>{{user.uname}}</td>
+                    <td>{{user.age}}</td>
+                    <td>{{user.gender}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <button @click="createUser">添加元素</button>
+    </div>
+    <script src="../vue.min.js"></script>
+    <script>
+        var modelDate = {
+            users:[
+                {uname:"lzm",age:22,gender:"boy"},
+                {uname:"lzm01",age:23,gender:"girl"},
+                {uname:"lzm02",age:28,gender:"boy"},
+                ]
+        };
+        var app = new Vue({
+            el:"#app",
+            data:modelDate,
+            methods:{
+                createUser:function(){
+                    console.log("-----")
+                    //更新  push/pop/shift/unshift/sort/reverse
+                    //this.users.push({uname:"lzm03",age:28,gender:"b"})
+                    //不更新 filter/concat/slice
+                    this.users[1]={uname:"lzm100",age:28,gender:"b"}
+
+                }
+            }
+        });
+    </script>
+</body>
+</html>

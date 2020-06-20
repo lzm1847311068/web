@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>自定义过滤器</title>
+</head>
+<body>
+    <div id="app">
+        <h4>{{price}}</h4>
+        <h4>{{price | myFilter("¥")}}</h4>
+    </div>
+    <script src="../vue.min.js"></script>
+    <script>
+        var vueData = {
+            price:356
+        }
+        new Vue({
+            el:"#app",
+            data:vueData,
+            filters:{ //所有的过滤器定义到此处
+                myFilter:function (myInput,arg1) { //可以写一个参数
+                    //arg1:"¥"   函数中参数货币符号
+                    //myInput：price 过滤器钱(|)变量值
+                    var result = arg1 + myInput;
+                    return result;  //一定要返回
+                }
+            }
+        })
+    </script>
+</body>
+</html>

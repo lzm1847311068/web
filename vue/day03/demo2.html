@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>过滤器练习</title>
+</head>
+<body>
+    <div id="app">
+        <h3>{{stringDemo | myText(false)}}</h3>
+    </div>
+    <script src="../vue.min.js"></script>
+    <script>
+        var vueData = {
+            stringDemo:"Lzm"
+        }
+        new Vue({
+            el:"#app",
+            data:vueData,
+            filters:{
+                myText:function (Input,arg) {
+                    console.log(arg)
+                    if(arg){
+                        return Input.toUpperCase();
+                    }else if(arg == false){
+                        return Input.toLowerCase();
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

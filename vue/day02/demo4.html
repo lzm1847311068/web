@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>练习</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="message" @keydown.enter="addData">
+        <ul>
+            <li v-for="(data,index) in arrays">
+                {{data}}
+                <button @click="deleteData(index)">X</button>
+            </li>
+        </ul>
+    </div>
+    <script src="../vue.min.js"></script>
+    <script>
+        var vueData = {
+            message:"",  //保存你输入的内容
+            arrays:[]  //保存多次输入的新内容
+        }
+        new Vue({
+            el:"#app",
+            data:vueData,
+            methods:{
+                addData:function () {
+                    //push()方法：（在数组结尾处）向数组添加一个新的元素
+                    this.arrays.push(this.message);
+                    console.log(this.arrays.toString())//测试输出
+                    this.message = "";
+                },
+                deleteData:function (index) {
+                    //下标index开始，删除一个元素
+                    this.arrays.splice(index,1);
+                }
+            }
+        })
+    </script>
+</body>
+</html>

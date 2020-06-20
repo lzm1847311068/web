@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>复合组件</title>
+</head>
+<body>
+    <div id="app">
+<!--        完成组件调用-->
+        <my-article></my-article>
+    </div>
+    <script src="../vue.min.js"></script>
+    <script>
+        //复合组件三部分组成  artivle[title/detail]
+        Vue.component("my-title",{
+            template:'<h4>副标题</h4>'
+        });
+        Vue.component("my-detail",{
+            template:'<p>详细信息</p>'
+        });
+        Vue.component("my-article",{
+            template:'' +
+                '<div>' +
+                    '<my-title></my-title>' +
+                    '<my-detail></my-detail>' +
+                '</div>'
+        });
+
+
+        var vueData = {
+
+        }
+        new Vue({
+            el:"#app",
+            data:vueData,
+
+        })
+    </script>
+</body>
+</html>

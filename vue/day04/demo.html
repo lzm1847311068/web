@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="app">
+        名字：{{name}}
+        <br>
+        <ul>
+            <li v-for="(item,idx) in list" v-show="isYes">
+                {{item}}:{{idx}}
+            </li>
+        </ul>
+        <button @click="gaiBian">隐藏list</button>
+    </div>
+<script src="../vue.min.js"></script>
+<script>
+    var vueDate = {
+        name:"tom",
+        list:[1,5,8,9,10],
+        isYes:true
+    }
+    new Vue({
+        el:"#app",
+        data:vueDate,
+        methods:{
+            gaiBian:function () {
+                this.isYes = false;
+            }
+        }
+    })
+</script>
+</body>
+</html>

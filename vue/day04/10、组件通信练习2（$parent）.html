@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>组件之间通信练习</title>
+</head>
+<body>
+    <div id="app">
+        <parent></parent>
+    </div>
+<script src="../vue.min.js"></script>
+<script>
+    Vue.component("parent",{
+        data:function () {
+            return {
+                userList:["tom","amy","daMing"]
+            }
+        },
+        template:
+            '<div>' +
+            '   <ul><li v-for="item in userList">{{item}}</li></ul>' +
+            '   <child userName="tom1"></child>' +  //调用了两次子组件，所以会有两个button按钮
+            '   <child userName="amy2"></child>' +
+            '</div>'
+    });
+    Vue.component("child",{
+        props:["userName"],
+        data:function () {
+            return {
+                user:""
+            }
+        },
+        template:
+            '<div>' +
+                '<input type="text" v-model="user">' +
+                '<button @click="addData">添加</button>' +
+            '</div>',
+        methods:{
+            addData:function () {
+                //将用户名添加到父元素列表
+                this.$parent.userList.push(this.userName+":"+this.user);
+                //清空当前元素
+                this.userName = "";
+            }
+        }
+    });
+
+    new Vue({
+        el:"#app"
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>练习</title>
+</head>
+<body>
+    <div id="app">
+        用户名：<input type="text" v-model="person.username"><br>
+        年龄：<input type="text" v-model="person.age"><br>
+        电话：<input type="text" v-model="person.phone"><br>
+        <button @click="addUser">添加用户</button>
+        <table border="5pox" width="300px">
+            <tr>
+                <td>用户名</td>
+                <td>年龄</td>
+                <td>电话</td>
+                <td>操作</td>
+            </tr>
+            <tr v-for="(user,index) in users">
+                <td>{{user.username}}</td>
+                <td>{{user.age}}</td>
+                <td>{{user.phone}}</td>
+                <td @click="deleteData(index)">删除</td>
+            </tr>
+        </table>
+    </div>
+    <script src="../vue.min.js"></script>
+    <script>
+        var vueData = {
+            person:{username:"",age:"",phone:""},
+            users:[]
+        }
+        new Vue({
+            el:"#app",
+            data:vueData,
+            methods:{
+                addUser:function () {
+                    this.users.push(this.person);
+                    this.person = {username:"",age:"",phone:""};
+                },
+                deleteData:function (index) {
+                    //下标index开始，删除一个元素
+                    this.users.splice(index,1);
+                }
+            }
+
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>组件之间通信练习</title>
+</head>
+<body>
+    <div id="app">
+        <parent></parent>
+    </div>
+<script src="../vue.min.js"></script>
+<script>
+    Vue.component("parent",{
+        data:function () {
+            return {
+                myCar:"QQ汽车"
+            }
+        },
+        template:'<div><child :myValue="myCar"></child></div>'
+    });
+    Vue.component("child",{
+        props:["myValue"],
+        template:'<input type="text" :value="myValue">',
+        mounted:function () {
+            console.log(this.myValue)
+        }
+    });
+    new Vue({
+        el:"#app"
+    })
+</script>
+</body>
+</html>

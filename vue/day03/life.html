@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>组件的生命周期</title>
+</head>
+<body>
+    <div id="app">
+        <button @click="isShow = !isShow">删除组件</button>
+        <!--组件的挂载-->
+        <my-component v-if="isShow"></my-component>
+    </div>
+    <script src="../vue.min.js"></script>
+    <script>
+        //组件的创建 -- 生命周期
+        Vue.component("my-component",{
+            template:'' +
+                '<div>' +
+                '   <button @click="handleClick">click</button>' +
+                '   <h4>Hello {{count}}</h4>' +
+                '</div>',
+            data:function () {
+                //写法特殊：每个模板对象中有一独立数据
+                return {
+                    count:0
+                }
+            },
+            methods:{
+                handleClick:function () {
+                    this.count ++;
+                    console.log(this.count)
+                }
+            },
+            beforeCreate:function () {
+                console.log("创建前")
+            },
+            created:function () {
+                console.log("创建后")
+            },
+            beforeMount:function () {
+                console.log("挂载前")
+            },
+            mounted:function () {
+                console.log("挂载后")
+            },
+            beforeUpdate:function () {
+                console.log("更新前")
+            },
+            updated:function () {
+                console.log("更新后")
+            },
+            beforeDestroy:function () {
+                console.log("销毁前")
+            },
+            destroyed:function () {
+                console.log("销毁后")
+            }
+        });
+        var vueDate = {
+            isShow:true
+        }
+        new Vue ({
+            el:"#app",
+            data:vueDate
+        })
+    </script>
+</body>
+</html>

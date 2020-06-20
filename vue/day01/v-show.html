@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h3>v-show指令</h3>
+    <div id="app">
+        {{message}}
+        <h3 v-show="yes">yes</h3>
+        <h3 v-show="no">no</h3>
+        <h3 v-show="age >= 25">age:{{age}}</h3>
+        <h3 v-show="name.indexOf('w') >= 0">name:{{name}}</h3>
+    </div>
+    <script src="../vue.min.js"></script>
+    <script>
+        var modelDate = {
+            message:"hello",
+            yes:true,
+            no:false,
+            age:28,
+            name:"lion"
+        };
+        new Vue({
+            el:"#app",
+            data:modelDate
+        });
+    </script>
+</body>
+</html>

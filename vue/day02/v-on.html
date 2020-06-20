@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="message">
+        <br>
+        <button v-on:click="say">点一下1</button>
+        <br>
+        <!--简写，所有@开头的都是v-on的简写-->
+        <button @click="say">点一下2</button>
+        <br>
+        <button @click="run('vag')">点一下3</button>
+        <br>
+        <input type="button" @click="clickMe" value="btn1">
+        <br>
+        <input type="button" @click.stop="clickMe" value="btn1">
+        <br>
+        <input type="text" @keydown.enter="clickMe">
+        <br>
+        <!--简写，13就是回车（enter）-->
+        <input type="text" @keydown.13="clickMe">
+        <!--阻止提交，提交时触发handleLogin方法-->
+        <form action="#" @submit.prevent="handleLogin">
+            <button>login</button>
+        </form>
+        <select @change="handleChange">
+            <option value="red">红色</option>
+            <option value="green">绿色</option>
+            <option value="yellow">黄色</option
+        </select>
+    </div>
+    <script src="../vue.min.js"></script>
+    <script>
+        var vueData = {
+            message:"hello"
+        }
+        new Vue({
+            el:"#app",
+            data:vueData,
+            methods:{
+                say:function(){
+                    //this代表当前vue对象
+                    alert(this.message);
+                },
+                clickMe:function () {
+                    alert(this.message)
+                },
+                run:function (msg) {
+                    this.message = msg;
+                },
+                handleLogin:function () {
+                    console.log("提交事件被触发了")
+                },
+                handleChange:function (event) {
+                    //获取事件触发元素,this会冒泡,e.target不冒泡,就是指向事件触发的dom。
+                    var targer = event.target;
+                    console.log(targer.value);
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h2>第三个示例：大花括号</h2>
+<!--    3:创建view,显示数据-->
+    <div id="app">
+        <h4>{{message}}</h4>
+<!--    在双花括号可以 执行运算-->
+        <h4>{{3+5}}</h4>
+<!--    获取数据对象中属性值-->
+        <h4>{{car.brand}}</h4>
+<!--    三目运算-->
+        <h4>{{count>totalNum?"success":"error"}}</h4>
+<!--    布尔值-->
+        <h4>{{hasMore}}:{{!hasMore}}</h4>
+<!--    数据内容按照字符串输出-->
+        <h4>{{html}}</h4>
+    </div>
+    <script src="../vue.min.js"></script>
+    <script>
+        //1:创建model
+        var exampleData = {
+            message : "hello vue",
+            html:"<h6>Hello Vue</h6>",
+            count:3,
+            totalNum:10,
+            hasMore:true,
+            car:{
+                brand:"volvo",
+                price:30
+            }
+        };
+        //1:创建Vue
+        new Vue({
+            el:"#app",
+            data:exampleData
+        });
+    </script>
+</body>
+</html>

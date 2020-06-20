@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="app">
+        <h1 v-change="count">自定义指令</h1>
+    </div>
+    <script src="../vue.min.js"></script>
+    <script>
+        var vueData = {
+            count:0
+        }
+        new Vue({
+            el:"#app",
+            data:vueData,
+            methods:{       //保存自定义方法
+
+            },
+            directives:{     //保存自定义指令
+                change:{    //自定义指令
+                    //el:挂载的元素    bindings：绑定到哪个元素上的值
+                    bind:function (el,bindings) {  //指令绑定元素执行
+                        console.log("指令已经绑定到元素了")
+                        console.log(el)
+                        console.log(bindings)
+                    },
+                    update:function (el,bindings) {  //更新数据
+                        console.log("指令中数据发生变化")
+                    },
+                    unbind:function (el,bindings) {  //卸载元素
+                        console.log("解除绑定")
+                    }
+                }
+            }
+
+        })
+    </script>
+</body>
+</html>

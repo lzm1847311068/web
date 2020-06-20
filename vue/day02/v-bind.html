@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .myRed{color:red}
+        .myYellow{color:yellow}
+        .mySize{font-size:39px}
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h3 v-bind:style="{backgroundColor:myBg}">我是标题，当点击下面按钮时会改变颜色</h3>
+        <button @click="updateColor">修改背景颜色</button>
+        <h3 v-bind:style="{backgroundColor:myBg,color:myColor}">修改颜色</h3>
+
+<!--        isRed=true将myRed添加至class-->
+<!--        isRed=false将myRed删除(class为空)-->
+        <p v-bind:class="{myRed:isRed}">文字背景色是红色嘛？</p>
+        <p v-bind:class="{myRed:isRed,myYellow:isCustome}">文字背景什么颜色？</p>
+<!--        值是成对出现的话就加{}，如果只有一个值，不能加-->
+        <button v-bind:disabled="isDisable">disabled</button>
+        <br>
+<!--        简写v-bind-->
+        <button :disabled="isDisable">disabled</button>
+    </div>
+    <script src="../vue.min.js"></script>
+    <script>
+        var vueData = {
+            myBg:"#ff003b",
+            myColor:"#00ff00",
+            isRed:false,
+            isCustome:true,
+            isDisable:true
+        }
+        new Vue({
+            el:"#app",
+            data:vueData,
+            methods:{
+                updateColor:function(){
+                    //this代表当前vue对象
+                    this.myBg = this.myColor;
+                }
+            }
+        })
+    </script>
+</body>
+</html>
